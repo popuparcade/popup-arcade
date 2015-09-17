@@ -1,0 +1,20 @@
+{
+  "name": "popup-arcade",
+  "version": "1.0.0",
+  "description": "",
+  "main": "browser.js",
+  "dependencies": {
+    "arcade-controls": "sethvincent/arcade-controls",
+    "arcade-server": "sethvincent/arcade-server",
+    "gameloop": "^0.3.2"
+  },
+  "devDependencies": {
+    "budo": "^4.2.1"
+  },
+  "scripts": {
+    "start": "node server.js",
+    "web": "budo browser.js --live"
+  },
+  "author": "",
+  "license": "ISC"
+}
