@@ -1,10 +1,19 @@
+var createPlayer = require('./player')
+var gameloop = require('gameloop')
+
+var server = require('arcade-server')({
+  host: 'http://10.0.0.4:4444'
+})
+
 var canvas = document.createElement('canvas')
 canvas.id = 'game'
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
 document.body.appendChild(canvas)
 
-var createPlayer = require('./player')
+var game = gameloop({
+  renderer: canvas.getContext('2d')
+})
 
 var player1 = createPlayer({
   remote: false,
@@ -16,20 +25,8 @@ var player2 = createPlayer({
   color: '#fa3f4a'
 })
 
-var game = require('gameloop')({
-  renderer: canvas.getContext('2d')
-})
-
-var server = require('arcade-server')({
-  host: 'http://10.0.0.4:4444'
-})
-
 var controls = require('arcade-controls')({
   keyboard: true
-})
-
-controls.on('button', function (value) {
-  console.log('still listengin?', value)
 })
 
 server.on('move', function (player, position) {
