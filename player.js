@@ -8,7 +8,7 @@ function Player (options) {
   this.y = options.y || 0
   this.width = options.width || 20
   this.height = options.height || 20
-  this.speed = options.speed || 8
+  this.speed = options.speed || 2
   this.friction = options.friction || 0.9
   this.velocity = options.velocity || { x: 0, y: 0 }
   this.remote = options.remote || false
