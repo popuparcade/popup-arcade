@@ -27,8 +27,8 @@ Player.prototype.move = function player_move (keys) {
 }
 
 Player.prototype.update = function (dt) {
-  this.x += this.velocity.x || 0
-  this.y += this.velocity.y || 0
+  this.x += this.velocity.x
+  this.y += this.velocity.y
   this.velocity.x *= this.friction
   this.velocity.y *= this.friction
 }
