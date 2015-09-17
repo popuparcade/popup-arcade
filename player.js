@@ -31,8 +31,8 @@ Player.prototype.move = function player_move (keys) {
 Player.prototype.update = function (dt) {
   this.lastX = this.x
   this.lastY = this.y
-  this.x += this.velocity.x
-  this.y += this.velocity.y
+  this.x = Math.round(this.x += this.velocity.x)
+  this.y = Math.round(this.y += this.velocity.y)
   this.velocity.x *= this.friction
   this.velocity.y *= this.friction
 }

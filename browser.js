@@ -39,7 +39,9 @@ server.on('move', function (player, position) {
 game.on('update', function (dt) {
   player1.move(controls.keys)
   player1.update(dt)
-  if (player1.lastX !== player1.x && player1.lastY !== player1.y) {
+  var changedX = player1.lastX !== player1.x
+  var changedY = player1.lastY !== player1.y
+  if (!(!changedX && !changedY)) {
     server.emit('move', server.id, { x: player1.x, y: player1.y })
   }
 })
