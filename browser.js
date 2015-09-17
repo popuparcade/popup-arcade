@@ -20,7 +20,9 @@ var game = require('gameloop')({
   renderer: canvas.getContext('2d')
 })
 
-var server = require('arcade-server')()
+var server = require('arcade-server')({
+  host: 'http://10.0.0.4:4444'
+})
 
 var controls = require('arcade-controls')({
   keyboard: true
