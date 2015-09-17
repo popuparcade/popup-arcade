@@ -12,6 +12,8 @@ function Player (options) {
   this.friction = options.friction || 0.9
   this.velocity = options.velocity || { x: 0, y: 0 }
   this.remote = options.remote || false
+  this.lastX = null
+  this.lastY = null
 }
 
 Player.prototype.setPosition = function (position) {
@@ -27,6 +29,8 @@ Player.prototype.move = function player_move (keys) {
 }
 
 Player.prototype.update = function (dt) {
+  this.lastX = this.x
+  this.lastY = this.y
   this.x += this.velocity.x
   this.y += this.velocity.y
   this.velocity.x *= this.friction
