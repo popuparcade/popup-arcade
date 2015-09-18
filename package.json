@@ -16,5 +16,5 @@
     "web": "budo browser.js --live"
   },
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
