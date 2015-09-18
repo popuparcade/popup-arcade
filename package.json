@@ -4,8 +4,8 @@
   "description": "",
   "main": "browser.js",
   "dependencies": {
-    "arcade-controls": "sethvincent/arcade-controls",
-    "arcade-server": "sethvincent/arcade-server",
+    "arcade-controls": "popuparcade/arcade-controls",
+    "arcade-server": "popuparcade/arcade-server",
     "gameloop": "^0.3.2"
   },
   "devDependencies": {
