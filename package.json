@@ -6,6 +6,7 @@
   "dependencies": {
     "arcade-controls": "sethvincent/arcade-controls",
     "arcade-server": "sethvincent/arcade-server",
+    "crtrdg-scene": "^1.0.0",
     "gameloop": "^0.3.2"
   },
   "devDependencies": {
