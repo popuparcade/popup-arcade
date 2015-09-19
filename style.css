@@ -6,4 +6,5 @@ html, body {
 
 img#gif {
   position: absolute;
+  right: 0;
 }
