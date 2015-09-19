@@ -10,6 +10,13 @@ var server = require('arcade-server')({
 })
 
 /*
+* GET STATUS OF ARCADE CONTROLS THROUGH `controls.keys`
+*/
+var controls = require('arcade-controls')({
+  keyboard: true
+})
+
+/*
 * CREATE THE CANVAS ELEMENT
 */
 var canvas = document.getElementById('game')
@@ -81,13 +88,6 @@ var player2 = createPlayer({
 
 // add all of the bodies to the world
 World.add(engine.world, [player1.body, player2.body, ground])
-
-/*
-* GET STATUS OF ARCADE CONTROLS THROUGH `controls.keys`
-*/
-var controls = require('arcade-controls')({
-  keyboard: true
-})
 
 /*
 * LISTEN FOR THE OTHER PLAYER'S MOVEMENTS
