@@ -9,6 +9,10 @@ var server = require('arcade-server')({
   host: 'http://10.0.0.4:4444'
 })
 
+server.on('connection', function () {
+  server.emit('hello', process.env.ARCADE_MACHINE_ID)
+})
+
 /*
 * GET STATUS OF ARCADE CONTROLS THROUGH `controls.keys`
 */
