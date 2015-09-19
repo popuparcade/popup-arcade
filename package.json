@@ -4,11 +4,9 @@
   "description": "",
   "main": "browser.js",
   "dependencies": {
-    "arcade-controls": "sethvincent/arcade-controls",
-    "arcade-server": "sethvincent/arcade-server",
-    "crtrdg-scene": "^1.0.1",
-    "gameloop": "^0.3.2",
-    "matter-js": "^0.8.0"
+    "matter-js": "^0.8.0",
+    "arcade-controls": "popuparcade/arcade-controls",
+    "arcade-server": "popuparcade/arcade-server",
   },
   "devDependencies": {
     "budo": "^4.2.1"
@@ -18,5 +16,5 @@
     "web": "budo browser.js --live"
   },
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }

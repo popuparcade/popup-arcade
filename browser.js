@@ -23,10 +23,10 @@ var gif = document.getElementById('gif')
 gif.width = (window.innerWidth - canvas.width)
 gif.height = window.innerHeight
 gif.src = controls.gifURL
+
 /*
 * PHYSICS OBJECTS
 */
-
 var Engine = Matter.Engine
 var World = Matter.World
 var Bodies = Matter.Bodies
@@ -69,7 +69,7 @@ var player1 = createPlayer({
   color: '#3ed24e',
   body: Bodies.rectangle(400, 200, 20, 20) // if we add { isStatic: true } as final argument then it goes through everything
 })
-console.log(player1)
+
 /*
 * PLAYER 2: THE REMOTE PLATER
 */
@@ -104,7 +104,6 @@ var level1 = scenes.create({
 })
 
 level1.on('start', function (dt) {
-  console.log('weeee')
   var box = Bodies.rectangle(10, 10, 1000, 20, { isStatic: true })
   World.add(engine.world, [box])
 })
