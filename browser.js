@@ -12,12 +12,17 @@ var server = require('arcade-server')({
 /*
 * CREATE THE CANVAS ELEMENT
 */
-var canvas = document.createElement('canvas')
-canvas.id = 'game'
-canvas.width = window.innerWidth
+var canvas = document.getElementById('game')
+canvas.width = (0.7 * window.innerWidth)
 canvas.height = window.innerHeight
-document.body.style.margin = '0px'
 
+/*
+* CREATE THE GIF ELEMENT
+*/
+var gif = document.getElementById('gif')
+gif.width = (window.innerWidth - canvas.width)
+gif.height = window.innerHeight
+gif.src = controls.gifURL
 /*
 * PHYSICS OBJECTS
 */
