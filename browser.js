@@ -6,7 +6,7 @@ var createPlayer = require('./player')
 * CREATE SERVER OBJECT FOR COMMUNICATING BETWEEN LOCAL & REMOTE MACHINE
 */
 var server = require('arcade-server')({
-  host: 'http://10.0.0.4:4444'
+  host: 'http://172.17.18.119:4444'
 })
 
 server.on('connect', function () {
