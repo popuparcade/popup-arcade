@@ -6,7 +6,7 @@
   "dependencies": {
     "matter-js": "^0.8.0",
     "arcade-controls": "popuparcade/arcade-controls",
-    "arcade-server": "popuparcade/arcade-server",
+    "arcade-server": "popuparcade/arcade-server"
   },
   "devDependencies": {
     "budo": "^4.2.1"
