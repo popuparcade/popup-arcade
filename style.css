@@ -4,7 +4,13 @@ html, body {
   overflow: hidden;
 }
 
-img#gif {
+img#player1-gif {
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+
+img#player2-gif {
   position: absolute;
   right: 0;
 }

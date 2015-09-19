@@ -26,10 +26,17 @@ canvas.height = window.innerHeight
 /*
 * CREATE THE PLAYER 1 GIF ELEMENT
 */
-var gif = document.getElementById('player1-gif')
-gif.width = (window.innerWidth - canvas.width)
-gif.height = window.innerHeight
-gif.src = controls.gifURL
+var gif1 = document.getElementById('player1-gif')
+gif1.width = (window.innerWidth - canvas.width)
+gif1.height = window.innerHeight / 2
+gif1.src = controls.gifURL
+
+/*
+* CREATE THE PLAYER 2 GIF ELEMENT
+*/
+var gif2 = document.getElementById('player2-gif')
+gif2.width = (window.innerWidth - canvas.width)
+gif2.height = window.innerHeight / 2
 
 /*
 * PHYSICS OBJECTS
