@@ -38,7 +38,7 @@ var gif2 = document.getElementById('player2-gif')
 gif2.width = (window.innerWidth - canvas.width)
 gif2.height = window.innerHeight / 2
 
-controls.on('new-gif', function (url) {
+server.on('new-gif', function (url) {
   console.log('new gif', url)
   gif2.src = url
 })
