@@ -1,43 +1,34 @@
+var Matter = require('matter-js')
 module.exports = Player
 
 function Player (options) {
   if (!(this instanceof Player)) return new Player(options)
   this.id = options.id
   this.color = options.color || '#d34a2e'
-  this.x = options.x || 0
-  this.y = options.y || 0
-  this.width = options.width || 20
-  this.height = options.height || 20
-  this.speed = options.speed || 2
-  this.friction = options.friction || 0.9
-  this.velocity = options.velocity || { x: 0, y: 0 }
   this.remote = options.remote || false
-  this.lastX = null
-  this.lastY = null
+  this.body = options.body
+  this.body.render.fillStyle = options.color
+  this.body.render.strokeStyle = options.color
+  this.body.render.lineWidth = 1
+  if (this.remote) {
+    this.body.label = 'remote'
+  } else {
+    this.body.label = 'local'
+  }
 }
 
-Player.prototype.setPosition = function (position) {
-  this.x = position.x
-  this.y = position.y
+Player.prototype.translate = function (vector) {
+  Matter.Body.translate(this.body, vector)
 }
 
-Player.prototype.move = function player_move (keys) {
-  if (keys.up) this.velocity.y = -this.speed
-  if (keys.down) this.velocity.y = this.speed
-  if (keys.right) this.velocity.x = this.speed
-  if (keys.left) this.velocity.x = -this.speed
-}
-
-Player.prototype.update = function (dt) {
-  this.lastX = this.x
-  this.lastY = this.y
-  this.x = Math.round(this.x += this.velocity.x)
-  this.y = Math.round(this.y += this.velocity.y)
-  this.velocity.x *= this.friction
-  this.velocity.y *= this.friction
-}
-
-Player.prototype.draw = function (context) {
-  context.fillStyle = this.color
-  context.fillRect(this.x, this.y, this.width, this.height)
+Player.prototype.move = function (keys) {
+  var vector
+  if (keys.up) vector = { x: 0, y: -5 }
+  else if (keys.down) vector = { x: 0, y: 5 }
+  else if (keys.left) vector = { x: -5, y: 0 }
+  else if (keys.right) vector = { x: 5, y: 0 }
+  if (vector) {
+    this.translate(vector)
+    return vector
+  }
 }

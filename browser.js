@@ -1,5 +1,5 @@
-var gameloop = require('gameloop')
-var scenes = require('crtrdg-scene')
+var Matter = require('matter-js')
+var scenes = require('crtrdg-scene')()
 var createPlayer = require('./player')
 
 /*
@@ -16,13 +16,44 @@ var canvas = document.createElement('canvas')
 canvas.id = 'game'
 canvas.width = window.innerWidth
 canvas.height = window.innerHeight
-document.body.appendChild(canvas)
+document.body.style.margin = '0px'
 
 /*
-* CREATE THE GAME OBJECT
+* PHYSICS OBJECTS
 */
-var game = gameloop({
-  renderer: canvas.getContext('2d')
+
+var Engine = Matter.Engine
+var World = Matter.World
+var Bodies = Matter.Bodies
+var Events = Matter.Events
+
+var engine = Engine.create(document.body, {
+  world: { gravity: { x: 0, y: 0 } },
+  render: {
+    canvas: canvas,
+    options: {
+      background: '#d3ea2e',
+      wireframes: false
+    }
+  }
+})
+
+var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true })
+
+function start () {
+  scenes.set('level1')
+  Engine.run(engine)
+}
+
+Events.on(engine, 'collisionActive', function (e) {
+  console.log(e.pairs[0], e.pairs[1])
+})
+
+Events.on(engine, 'tick', function (e) {
+  var move = player1.move(controls.keys)
+  if (move) server.emit('move', server.id, move)
+  scenes.update()
+  scenes.draw(canvas.getContext('2d'))
 })
 
 /*
@@ -30,16 +61,21 @@ var game = gameloop({
 */
 var player1 = createPlayer({
   remote: false,
-  color: '#3ed24e'
+  color: '#3ed24e',
+  body: Bodies.rectangle(400, 200, 20, 20) // if we add { isStatic: true } as final argument then it goes through everything
 })
-
+console.log(player1)
 /*
 * PLAYER 2: THE REMOTE PLATER
 */
 var player2 = createPlayer({
   remote: true,
-  color: '#fa3f4a'
+  color: '#fa3f4a',
+  body: Bodies.rectangle(400, 250, 20, 20)
 })
+
+// add all of the bodies to the world
+World.add(engine.world, [player1.body, player2.body, ground])
 
 /*
 * GET STATUS OF ARCADE CONTROLS THROUGH `controls.keys`
@@ -52,39 +88,20 @@ var controls = require('arcade-controls')({
 * LISTEN FOR THE OTHER PLAYER'S MOVEMENTS
 */
 server.on('move', function (player, position) {
-  player2.setPosition(position)
-})
-
-/*
-* GAME UPDATE LOOP
-*/
-game.on('update', function (dt) {
-  scenes.update(dt)
-  player1.move(controls.keys)
-  player1.update(dt)
-  var changedX = player1.lastX !== player1.x
-  var changedY = player1.lastY !== player1.y
-  if (!(!changedX && !changedY)) {
-    server.emit('move', server.id, { x: player1.x, y: player1.y })
-  }
-})
-
-/*
-* GAME DRAW LOOP
-*/
-game.on('draw', function (context) {
-  context.fillStyle = '#d3ea2e'
-  context.fillRect(0, 0, canvas.width, canvas.height)
-  scenes.draw(context)
-  player1.draw(context)
-  player2.draw(context)
+  player2.translate(position)
 })
 
 /*
 * LEVEL 1
 */
-var level1 = scenes({
+var level1 = scenes.create({
   name: 'level1'
+})
+
+level1.on('start', function (dt) {
+  console.log('weeee')
+  var box = Bodies.rectangle(10, 10, 1000, 20, { isStatic: true })
+  World.add(engine.world, [box])
 })
 
 level1.on('update', function (dt) {
@@ -95,11 +112,19 @@ level1.on('draw', function (canvas) {
 
 })
 
+level1.on('end', function (dt) {
+
+})
+
 /*
 * LEVEL 2
 */
-var level2 = scenes({
+var level2 = scenes.create({
   name: 'level2'
+})
+
+level2.on('start', function (dt) {
+
 })
 
 level2.on('update', function (dt) {
@@ -110,11 +135,19 @@ level2.on('draw', function (canvas) {
 
 })
 
+level2.on('end', function (dt) {
+
+})
+
 /*
 * LEVEL 3
 */
-var level3 = scenes({
+var level3 = scenes.create({
   name: 'level3'
+})
+
+level3.on('start', function (dt) {
+
 })
 
 level3.on('update', function (dt) {
@@ -125,7 +158,11 @@ level3.on('draw', function (canvas) {
 
 })
 
+level3.on('end', function (dt) {
+
+})
+
 /*
-* START THE GAME!!!
+* START THE GAME!!!!
 */
-game.start()
+start()

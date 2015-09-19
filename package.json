@@ -6,8 +6,9 @@
   "dependencies": {
     "arcade-controls": "sethvincent/arcade-controls",
     "arcade-server": "sethvincent/arcade-server",
-    "crtrdg-scene": "^1.0.0",
-    "gameloop": "^0.3.2"
+    "crtrdg-scene": "^1.0.1",
+    "gameloop": "^0.3.2",
+    "matter-js": "^0.8.0"
   },
   "devDependencies": {
     "budo": "^4.2.1"
