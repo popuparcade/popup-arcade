@@ -24,9 +24,9 @@ Player.prototype.translate = function (vector) {
 Player.prototype.move = function (keys) {
   var vector
   if (keys.up) vector = { x: 0, y: -5 }
-  else if (keys.down) vector = { x: 0, y: 5 }
-  else if (keys.left) vector = { x: -5, y: 0 }
-  else if (keys.right) vector = { x: 5, y: 0 }
+  if (keys.down) vector = { x: 0, y: 5 }
+  if (keys.left) vector = { x: -5, y: 0 }
+  if (keys.right) vector = { x: 5, y: 0 }
   if (vector) {
     this.translate(vector)
     return vector

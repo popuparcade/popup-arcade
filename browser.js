@@ -24,9 +24,9 @@ canvas.width = (0.7 * window.innerWidth)
 canvas.height = window.innerHeight
 
 /*
-* CREATE THE GIF ELEMENT
+* CREATE THE PLAYER 1 GIF ELEMENT
 */
-var gif = document.getElementById('gif')
+var gif = document.getElementById('player1-gif')
 gif.width = (window.innerWidth - canvas.width)
 gif.height = window.innerHeight
 gif.src = controls.gifURL
@@ -50,15 +50,25 @@ var engine = Engine.create(document.body, {
   }
 })
 
-var ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true })
-
 function start () {
   scenes.set('level1')
   Engine.run(engine)
 }
 
 Events.on(engine, 'collisionActive', function (e) {
-  console.log(e.pairs[0], e.pairs[1])
+  console.log('bodyA', e.pairs[0].bodyA.label)
+  console.log('bodyB', e.pairs[0].bodyB.label)
+
+  var collision = e.pairs[0].bodyA.label
+  if (e.pairs[0].bodyB.label === 'remote') {
+    if (collision === 'trap') {
+      console.log('it is a trap OH NOOOO')
+      // TODO: the actual code
+    } else if (collision === 'goal') {
+      console.log('hey you did it WOOO HOOOO')
+      // TODO: the actual code
+    }
+  }
 })
 
 Events.on(engine, 'tick', function (e) {
@@ -78,7 +88,7 @@ var player1 = createPlayer({
 })
 
 /*
-* PLAYER 2: THE REMOTE PLATER
+* PLAYER 2: THE REMOTE PLAYER
 */
 var player2 = createPlayer({
   remote: true,
@@ -86,8 +96,10 @@ var player2 = createPlayer({
   body: Bodies.rectangle(400, 250, 20, 20)
 })
 
-// add all of the bodies to the world
-World.add(engine.world, [player1.body, player2.body, ground])
+/*
+* ADD THE PLAYERS TO THE WORLD
+*/
+World.add(engine.world, [player1.body, player2.body])
 
 /*
 * LISTEN FOR THE OTHER PLAYER'S MOVEMENTS
@@ -104,8 +116,19 @@ var level1 = scenes.create({
 })
 
 level1.on('start', function (dt) {
-  var box = Bodies.rectangle(10, 10, 1000, 20, { isStatic: true })
-  World.add(engine.world, [box])
+  var wall = Bodies.rectangle(100, 100, 1000, 20, {
+    label: 'wall',
+    isStatic: true
+  })
+  var goal = Bodies.rectangle(20, 20, 20, 20, {
+    label: 'goal',
+    isStatic: true
+  })
+  var trap = Bodies.rectangle(canvas.width - 20, 10, 20, 100, {
+    label: 'trap',
+    isStatic: true
+  })
+  World.add(engine.world, [wall, goal, trap])
 })
 
 level1.on('update', function (dt) {
