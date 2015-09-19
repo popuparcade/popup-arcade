@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "web": "budo browser.js --live"
+    "web": "budo browser.js:bundle.js --live"
   },
   "author": "",
   "license": "MIT"
