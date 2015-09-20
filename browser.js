@@ -46,6 +46,16 @@ server.on('new-gif', function (url) {
   console.log('new gif', url)
   gif2.src = url
 })
+
+/*
+* AHAHAHAHAHAHA
+*/
+setTimeout(function () {
+  var name = process.env.ARCADE_MACHINE_ID === 'bobo' ? 'bobo' : 'pizzareadyeat'
+  var gif2 = document.getElementById('player1-gif')
+  gif2.src = '' + process.env.ARCADE_REMOTE_HOST + '/static/' + name + '-latest.git' + '?rand=' + Math.random()
+})
+
 /*
 * PHYSICS OBJECTS
 */
