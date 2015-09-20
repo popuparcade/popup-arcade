@@ -54,7 +54,7 @@ setInterval(function () {
   var name = process.env.ARCADE_MACHINE_ID === 'bobo' ? 'pizzareadyeat' : 'bobo'
   var gif2 = document.getElementById('player2-gif')
   gif2.src = process.env.ARCADE_REMOTE_HOST + '/static/' + name + '-latest.gif' + '?rand=' + Math.random()
-}, 1000)
+}, 5000)
 
 /*
 * PHYSICS OBJECTS
