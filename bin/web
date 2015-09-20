@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-echo $ARCADE_MACHINE_ID
-./node_modules/.bin/budo browser.js:bundle.js --live  -- -t [ envify --ARCADE_MACHINE_ID $ARCADE_MACHINE_ID ]
+./node_modules/.bin/budo browser.js:bundle.js --live  -- -t [ envify --ARCADE_MACHINE_ID $ARCADE_MACHINE_ID --ARCADE_REMOTE_HOST $ARCADE_REMOTE_HOST ]

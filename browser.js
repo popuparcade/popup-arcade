@@ -6,7 +6,7 @@ var createPlayer = require('./player')
 * CREATE SERVER OBJECT FOR COMMUNICATING BETWEEN LOCAL & REMOTE MACHINE
 */
 var server = require('arcade-server')({
-  host: 'http://192.168.43.13:4444'
+  host: process.env.ARCADE_REMOTE_HOST || 'http://localhost:4444'
 })
 
 server.on('connect', function () {
@@ -99,7 +99,7 @@ Events.on(engine, 'tick', function (e) {
 var player1 = createPlayer({
   remote: false,
   color: '#3ed24e',
-  body: Bodies.rectangle(400, 200, 20, 20) // if we add { isStatic: true } as final argument then it goes through everything
+  body: Bodies.rectangle(20, 20, 20, 20) // if we add { isStatic: true } as final argument then it goes through everything
 })
 
 /*
@@ -108,7 +108,7 @@ var player1 = createPlayer({
 var player2 = createPlayer({
   remote: true,
   color: '#fa3f4a',
-  body: Bodies.rectangle(400, 250, 20, 20)
+  body: Bodies.rectangle(50, 20, 20, 20)
 })
 
 /*
@@ -131,19 +131,27 @@ var level1 = scenes.create({
 })
 
 level1.on('start', function (dt) {
-  var wall = Bodies.rectangle(100, 100, 1000, 20, {
+  var wall1 = Bodies.rectangle(100, 100, 800, 20, {
     label: 'wall',
     isStatic: true
   })
-  var goal = Bodies.rectangle(20, 20, 20, 20, {
-    label: 'goal',
+  var wall2 = Bodies.rectangle(800, 520, 1000, 50, {
+    label: 'wall2',
     isStatic: true
   })
-  var trap = Bodies.rectangle(canvas.width - 20, 10, 20, 100, {
-    label: 'trap',
+  var wall3 = Bodies.rectangle(200, 400, 50, 500, {
+    label: 'wall3',
     isStatic: true
   })
-  World.add(engine.world, [wall, goal, trap])
+  var wall4 = Bodies.rectangle(800, 100, 50, 500, {
+    label: 'wall3',
+    isStatic: true
+  })
+  var wall5 = Bodies.rectangle(400, 700, 100, 250, {
+    label: 'wall3',
+    isStatic: true
+  })
+  World.add(engine.world, [wall1, wall2, wall3, wall4, wall5])
 })
 
 level1.on('update', function (dt) {
