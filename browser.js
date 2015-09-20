@@ -1,7 +1,7 @@
 var Matter = require('matter-js')
 var scenes = require('crtrdg-scene')()
 var createPlayer = require('./player')
-
+console.log(process.env.ARCADE_REMOTE_HOST)
 /*
 * CREATE SERVER OBJECT FOR COMMUNICATING BETWEEN LOCAL & REMOTE MACHINE
 */
@@ -50,10 +50,10 @@ server.on('new-gif', function (url) {
 /*
 * AHAHAHAHAHAHA
 */
-setTimeout(function () {
-  var name = process.env.ARCADE_MACHINE_ID === 'bobo' ? 'bobo' : 'pizzareadyeat'
-  var gif2 = document.getElementById('player1-gif')
-  gif2.src = '' + process.env.ARCADE_REMOTE_HOST + '/static/' + name + '-latest.git' + '?rand=' + Math.random()
+setInterval(function () {
+  var name = process.env.ARCADE_MACHINE_ID === 'bobo' ? 'pizzareadyeat' : 'bobo'
+  var gif2 = document.getElementById('player2-gif')
+  gif2.src = process.env.ARCADE_REMOTE_HOST + '/static/' + name + '-latest.gif' + '?rand=' + Math.random()
 }, 1000)
 
 /*
