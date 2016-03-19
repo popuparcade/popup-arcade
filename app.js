@@ -18,3 +18,16 @@ function modify (action, state) {
   }
 }
 
+raspi.init(function() {
+  var input = {
+    button: = new gpio.DigitalInput(pins.button)
+    up: = new gpio.DigitalInput(pins.up)
+    down: = new gpio.DigitalInput(pins.down)
+    left: = new gpio.DigitalInput(pins.left)
+    right: = new gpio.DigitalInput(pins.right)
+  }
+  
+  console.log(input)
+})
+
+
