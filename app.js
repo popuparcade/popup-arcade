@@ -1,11 +1,12 @@
 var createStore = require('store-emitter')
 var morphdom = require('morphdom')
 var extend = require('xtend')
-var hyperx = require('hyperx')
 var bel = require('bel')
 
-var createElement = bel.createElement
-var hx = hyperx(createElement)
+var raspi = require('raspi')
+var gpio = require('gpio')
+
+var pins = require('./pins')
 
 var store = createStore(modify, {
   pins: {}
@@ -16,3 +17,4 @@ function modify (action, state) {
     return state
   }
 }
+
