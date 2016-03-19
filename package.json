@@ -1,21 +1,25 @@
 {
   "name": "popup-arcade",
+  "productName": "Popup Arcade Demo",
+  "main": "main.js",
   "version": "1.0.0",
   "description": "",
-  "main": "browser.js",
   "dependencies": {
-    "arcade-controls": "popuparcade/arcade-controls",
-    "arcade-server": "popuparcade/arcade-server",
-    "crtrdg-scene": "^1.0.1",
-    "matter-js": "^0.8.0"
+    "bel": "^4.3.0",
+    "hyperx": "^2.0.2",
+    "morphdom": "^1.1.2"
   },
   "devDependencies": {
-    "budo": "^4.2.1",
-    "envify": "^3.4.0"
+    "debug": "^2.2.0",
+    "electron-debug": "^0.5.2",
+    "electron-packager": "^5.2.1",
+    "electron-prebuilt": "^0.37.2"
   },
   "scripts": {
-    "start": "node server.js",
-    "web": "./bin/web"
+    "clean": "rm -rf ./dist",
+    "build:osx": "electron-packager . popuparcade --out=dist/osx --platform=darwin --arch=x64 --version=0.37.2 --app-version=\"1.0.0\" ",
+    "build": "npm run clean && npm run build:osx",
+    "start": "DEBUG=* electron ."
   },
   "author": "",
   "license": "MIT"
