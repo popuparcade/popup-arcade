@@ -1,6 +1,10 @@
 module.exports = {
-  button: {
+  button1: {
     pin: 'GPIO22',
+    pullResistor: gpio.PULL_DOWN
+  },
+  button2: {
+    pin: 'GPIO21',
     pullResistor: gpio.PULL_DOWN
   },
   up: {
@@ -12,11 +16,11 @@ module.exports = {
     pullResistor: gpio.PULL_DOWN
   },
   left: {
-    pin: 'GPIO19',
+    pin: 'GPIO26',
     pullResistor: gpio.PULL_DOWN
   },
   right: {
-    pin: 'GPIO26',
+    pin: 'GPIO19',
     pullResistor: gpio.PULL_DOWN
   }
 }

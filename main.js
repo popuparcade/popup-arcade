@@ -1,7 +1,12 @@
-var app = require('app')
-var Menu = require('menu')
-var BrowserWindow = require('browser-window')
-require('electron-debug')()
+var electron = require('electron')
+var app = electron.app
+var BrowserWindow = electron.BrowserWindow
+
+require('electron-debug')({
+  showDevTools: true
+})
+
+console.log(process.versions)
 
 app.on('window-all-closed', function () {
   app.quit()
@@ -9,8 +14,7 @@ app.on('window-all-closed', function () {
 
 app.on('ready', function () {
   var win = new BrowserWindow({
-    title: 'Popup Arcade Demo',
-    'title-bar-style': 'hidden',
+    title: 'example',
     width: 1200,
     height: 800,
     minWidth: 700,
